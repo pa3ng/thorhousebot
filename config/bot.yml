@@ -1,0 +1,29 @@
+# metadata (for logging)
+name: thorhousebot # EDIT this (name of bot)
+
+# chat applications
+chat_application: slack # EDIT (network to use, e.g. 'slack')
+slack_token: ${SLACK_TOKEN} # EDIT ${SLACK_TOKEN}
+
+# system
+cli: false # leave this to be 'true' as default
+# true: enables ability to turn on CLI mode.
+# false: disables ability to turn on CLI mode.
+
+scheduler: false
+# true: enables rule scheduling
+# false: disables rule scheduling
+
+debug: true
+# true: enable logging to console
+# false: disable logging
+
+log_json: false
+# true: logs will be in JOSN format
+# false: logs will be in plain text
+
+# for advanced messaging capabilities
+webhook: false # leave this to be 'false' as default
+
+# for prometheus metrics capabilities
+metrics: false # 'false': disable prometheus metrics

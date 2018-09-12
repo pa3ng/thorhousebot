@@ -1,0 +1,20 @@
+# meta
+name: zen
+active: true
+# trigger and args
+respond: zen
+reaction: yin_yang
+# actions
+actions:
+  - name: zen http request
+    type: GET
+    url: ${GHE_API_BASE_URL}/zen
+    custom_headers:
+      Authorization: token ${GHE_TOKEN}
+
+# response
+format_output: ${_raw_http_output}
+direct_message_only: false
+# help
+help_text: "zen"
+include_in_help: true

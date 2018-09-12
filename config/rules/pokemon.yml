@@ -1,0 +1,40 @@
+# meta
+name: pokemon-rule
+active: true
+# trigger and args
+respond: pokemon
+args:
+  - name
+reaction: clock3
+# actions
+actions:
+  - name: pokemon http request
+    type: GET
+    url: http://pokeapi.co/api/v2/pokemon/${name}
+    query_data:
+    auth:
+    expose_json_fields:
+      pokename: '.name'
+      type: |-
+        {{ range .types }}
+          - {{ .type.name -}}
+        {{ end }}
+      weight: '.weight'
+      baseexp: '.base_experience'
+      ability: |-
+        {{ range .abilities }}
+          - {{ .ability.name -}}
+        {{ end }}
+    update_reaction: |-
+      {{ if (eq `${_raw_http_status}` "200") }}
+        white_check_mark
+      {{ else }}
+        x
+      {{ end }}
+# response
+format_output: "Name: ${pokename}\n Types: ${type}\n Abilities: ${ability}\n Base Exp: ${baseexp}\n Weight: ${weight}\n Icon: :${name}:"
+direct_message_only: false
+
+# help
+help_text: pokemon <name>
+include_in_help: true
